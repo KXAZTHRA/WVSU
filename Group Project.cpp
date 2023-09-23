@@ -14,6 +14,7 @@ int main() {
         string day = get_Dayinput();
 
         // Get the time when the call started 
+        
         // Get call length
         // Calculate fare
         // Display Fare
