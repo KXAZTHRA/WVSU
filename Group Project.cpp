@@ -1,4 +1,3 @@
-hello kirk
 #include <iostream>
 #include <limits>
 #include <array> 
