@@ -6,6 +6,7 @@ using namespace std;
 string get_Dayinput();
 void get_Validatedtime(int& h, int& m);
 int getCallDuration();
+double calculate(string day, int hour, double callLength);
 bool choice(void);
 void clear_input();
 
@@ -23,6 +24,7 @@ int main() {
         callDuration = getCallDuration();
 
         // Calculate fare
+        double fare = calculate(day, h, callDuration);
 
         // Display Fare
         
@@ -201,6 +203,28 @@ int getCallDuration() {
             cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
         }
     }
+}
+
+
+double calculate(string day, int hour, double callLength) {
+    string weekdays[] = {"MO", "TU", "WE", "TH", "FR"};
+    double fare;
+    
+    for (string weekday : weekdays) {
+        if (day == weekday) {
+            if (hour >= 8 && hour <= 18) {
+                fare = 0.40 * callLength;
+            }
+            else {
+                fare = 0.25 * callLength;
+            }
+
+            return fare;
+        }
+    }
+
+    fare = 0.15 * callLength;
+    return fare;
 }
 
 
