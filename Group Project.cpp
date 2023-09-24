@@ -16,7 +16,9 @@ int main() {
         // Get the time when the call started 
         
         // Get call length
+
         // Calculate fare
+        
         // Display Fare
         
     } while(choice());
