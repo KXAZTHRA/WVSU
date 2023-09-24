@@ -104,7 +104,7 @@ void get_Validatedtime(int& h, int& m) {
         int hours, minutes;
         bool isValidHour = true;
 
-        while ((pos = milTime.find(delimiter)) != string::npos) {
+        if ((pos = milTime.find(delimiter)) != string::npos) {
             token = milTime.substr(0, pos);
 
             // conversion of hours into an int variable
