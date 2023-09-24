@@ -1,7 +1,7 @@
 #include <iostream>
 #include <limits>
-#include <array> 
 using namespace std;
+
 
 string get_Dayinput();
 void get_Validatedtime(int& h, int& m);
@@ -28,16 +28,16 @@ int main() {
 
         // Display Fare
         
-        
     } while(choice());
 }
+
 
 string get_Dayinput() {
     string days[] = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
     string text; 
     bool isAlpha, isDay;
 
-    while (true) {
+    while (true) { 
         isAlpha = true, isDay = false;
 
         cout << "The day the call started (MO, TU, WE, TH, FR, SA, SU): ";
@@ -78,6 +78,8 @@ string get_Dayinput() {
 
 
 bool isNumeric(const string& str) {
+    // Check whether ang string value is a digit
+    // 1y:00 ASCII 
     for (char c : str) {
         if (!isdigit(c)) {
             return false;
@@ -112,16 +114,22 @@ void get_Validatedtime(int& h, int& m) {
         int hours, minutes;
         bool isValidHour = true;
 
+        // 16:00 miltime[2] == ':'
         if ((pos = milTime.find(delimiter)) != string::npos) {
+            // 16:00
+            // token = 16 
             token = milTime.substr(0, pos);
 
             // conversion of hours into an int variable
+            // 00:00
+            // token == "00"
             if (token == "00" || token == "0") {
                 hours = 0;
             } else {
 
                 // calling the isNumeric function to check if it's a valid integer
                 if (isNumeric(token)) {
+                    // token == "16", hours = 16
                     hours = stoi(token);
                 } else {
                     cout << "Invalid value. Please enter a valid integer for hours." << endl;
@@ -137,7 +145,10 @@ void get_Validatedtime(int& h, int& m) {
                 }
             }
 
+            // Delete the chars from the first character to the delimeter
+            // miltime == "16:00"
             milTime.erase(0, pos + delimiter.length());
+            // miltime == "00"
         }
 
         // to check if hour is valid before proceeding
@@ -146,6 +157,7 @@ void get_Validatedtime(int& h, int& m) {
         }
 
         // to check if there are no more colons remaining in milTime
+        // what if 16:0
         if (milTime.find(delimiter) != string::npos) {
             cout << "Invalid value. Please enter a valid integer for minutes." << endl;
             continue;
@@ -174,45 +186,29 @@ void get_Validatedtime(int& h, int& m) {
 }
 
 int getCallDuration() {
-    string input;
     int num;
 
     while (true) {
         cout << "Enter call duration in minutes: ";
-        cin >> input;
+        cin >> num;
 
         bool valid = true;
 
-        for (int i : input) {
-            if (isdigit(i) == false) {
-                valid = false;
-                break;
-            }
-        }
-
-        if (valid) {
-            try {
-                num = stoi(input);
-                if (num > 0) {
-                    return num;
-                }
-            }
-            catch (...) {
-                valid = false;
-            }
-        }
-
-        if (valid == false) {
-            cout << "Invalid input" << endl;
+        if (cin.fail()) {
             cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+
+        if (num > 0) {
+            return num;
         }
     }
 }
 
 
 double calculate(string day, int hour, double callLength) {
-    string weekdays[] = {"MO", "TU", "WE", "TH", "FR"};
+    string weekdays[] = {"MO", "TU", "WE", "TH", "FR"}; 
     double fare;
     
     for (string weekday : weekdays) {
