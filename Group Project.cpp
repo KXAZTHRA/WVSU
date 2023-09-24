@@ -18,8 +18,9 @@ int main() {
         // Get call length
 
         // Calculate fare
-        
+
         // Display Fare
+        
         
     } while(choice());
 }
