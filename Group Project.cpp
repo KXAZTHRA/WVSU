@@ -28,11 +28,6 @@ int main() {
         
     } while(choice());
 }
-#include <iostream>
-#include <string>
-using namespace std;
-
-
 
 string get_Dayinput() {
     string days[] = {"MO", "TU", "WE", "TH", "FR", "SA", "SU"};
