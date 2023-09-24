@@ -19,6 +19,7 @@ int main() {
         get_Validatedtime(h, m);
 
         // Get call length
+        getCallDuration();
 
         // Calculate fare
 
@@ -27,6 +28,10 @@ int main() {
         
     } while(choice());
 }
+#include <iostream>
+#include <string>
+using namespace std;
+
 
 
 string get_Dayinput() {
@@ -163,6 +168,43 @@ void get_Validatedtime(int& h, int& m) {
         isValidTime = true;
 
     } while (!isValidTime);
+}
+
+int getCallDuration() {
+    string input;
+    int num;
+
+    while (true) {
+        cout << "Enter call duration in minutes: ";
+        cin >> input;
+
+        bool valid = true;
+
+        for (int i : input) {
+            if (isdigit(i) == false) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            try {
+                num = stoi(input);
+                if (num > 0) {
+                    return num;
+                }
+            }
+            catch (...) {
+                valid = false;
+            }
+        }
+
+        if (valid == false) {
+            cout << "Invalid input" << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+        }
+    }
 }
 
 
