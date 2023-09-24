@@ -5,11 +5,12 @@ using namespace std;
 
 string get_Dayinput();
 void get_Validatedtime(int& h, int& m);
+int getCallDuration();
 bool choice(void);
 void clear_input();
 
 int main() {
-    int h, m;
+    int h, m, callDuration;
 
     do {
         // Get day
@@ -19,7 +20,7 @@ int main() {
         get_Validatedtime(h, m);
 
         // Get call length
-        getCallDuration();
+        callDuration = getCallDuration();
 
         // Calculate fare
 
@@ -57,8 +58,8 @@ string get_Dayinput() {
         }
 
         // within the days in a week  
-        for (int day = 0; day < days->length(); day++) {
-            if (text == days[day]) {
+        for (string day : days) {
+            if (text == day) {
                 isDay = true;
                 break;
             }
