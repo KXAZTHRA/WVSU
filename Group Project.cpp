@@ -101,6 +101,11 @@ void get_Validatedtime(int& h, int& m) {
             continue;
         }
 
+        if (milTime[2] != ':') {
+            clear_input();
+            continue;
+        }
+
         size_t pos = 0;
         string token;
 
