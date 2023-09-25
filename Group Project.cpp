@@ -1,5 +1,7 @@
 #include <iostream>
 #include <limits>
+#include <iomanip>
+
 using namespace std;
 
 
@@ -9,6 +11,8 @@ int getCallDuration();
 double calculate(string day, int hour, double callLength);
 bool choice(void);
 void clear_input();
+string DayConversion(const string& day);
+string TimeConversion(int h, int m);
 
 int main() {
     int h, m, callDuration;
@@ -27,7 +31,9 @@ int main() {
         double fare = calculate(day, h, callDuration);
 
         // Display Fare
-        
+        string actualDay = DayConversion(day);
+        string ActualTime = TimeConversion(h, m);
+        cout << "The fare of the call that was held on " << actualDay << " at " << ActualTime << ", with a call duration of " << callDuration << " minutes is $" << fixed << setprecision(2) << fare << "." << endl;
     } while(choice());
 }
 
@@ -259,4 +265,28 @@ bool choice(void) {
 void clear_input() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+string DayConversion(const string& day) {
+
+    if (day == "MO") return "MONDAY";
+    else if (day == "TU") return "TUESDAY";
+    else if (day == "WE") return "WEDNESDAY";
+    else if (day == "TH") return "THURSDAY";
+    else if (day == "FR") return "FRIDAY";
+    else if (day == "SA") return "SATURDAY";
+    else if (day == "SU") return "SUNDAY"; 
+    else return "Invalid Day";
+}
+
+string TimeConversion(int h, int m) {
+    string period = (h < 12) ? "AM" : "PM";
+    if (h == 0) {
+        h = 12;
+    } else if (h > 12) {
+        h -= 12;
+    }
+    stringstream ss;
+    ss << setfill('0') << setw(2) << h << ":" << setw(2) << m << " " << period;
+    return ss.str();
 }
