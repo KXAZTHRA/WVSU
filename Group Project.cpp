@@ -100,7 +100,7 @@ void get_Validatedtime(int& h, int& m) {
     bool isValidTime = false;
 
     do {
-        cout << "\nTime the call started (in military format e.g. 16:00): ";
+        cout << "Time the call started (in military format e.g. 16:00): ";
         cin >> milTime;
 
         // to check if milTime is exactly 5 characters
