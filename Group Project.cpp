@@ -8,7 +8,7 @@ using namespace std;
 string get_Dayinput();
 void get_Validatedtime(int& h, int& m);
 int getCallDuration();
-double calculate(string day, int hour, double callLength);
+double calculate(string day, int hour, int min, double callLength);
 bool choice(void);
 void clear_input();
 string DayConversion(const string& day);
@@ -28,7 +28,7 @@ int main() {
         callDuration = getCallDuration();
 
         // Calculate fare
-        double fare = calculate(day, h, callDuration);
+        double fare = calculate(day, h, m, callDuration);
 
         // Display Fare
         string actualDay = DayConversion(day);
@@ -201,8 +201,7 @@ int getCallDuration() {
         bool valid = true;
 
         if (cin.fail()) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            clear_input();
             continue;
         }
 
@@ -213,16 +212,18 @@ int getCallDuration() {
 }
 
 
-double calculate(string day, int hour, double callLength) {
+double calculate(string day, int hour, int min, double callLength) {
     string weekdays[] = {"MO", "TU", "WE", "TH", "FR"}; 
     double fare;
     
     for (string weekday : weekdays) {
         if (day == weekday) {
             if (hour >= 8 && hour <= 18) {
+                if (hour == 18 && min != 0) goto proceed; // check if min is past 18:00
                 fare = 0.40 * callLength;
             }
             else {
+                proceed:
                 fare = 0.25 * callLength;
             }
 
@@ -243,7 +244,7 @@ bool choice(void) {
     while (true) {
         // Ask user for a decision
         cout << "\nDo you want to continue? Yes or No: ";
-        cin >> decision[0];
+        cin >> decision;
     
         // Convert the text to uppercase, making the input case-insensitive
         decision[0] = toupper(decision[0]);
