@@ -33,7 +33,10 @@ int main() {
         // Display Fare
         string actualDay = DayConversion(day);
         string ActualTime = TimeConversion(h, m);
-        cout << "The fare of the call that was held on " << actualDay << " at " << ActualTime << ", with a call duration of " << callDuration << " minutes is $" << fixed << setprecision(2) << fare << "." << endl;
+        cout << "The fare of the call that was held on " 
+             << actualDay << " at " << ActualTime << ", with a call duration of " 
+             << callDuration << " minutes is $" << fixed << setprecision(2) << fare << "." << endl;
+             
     } while(choice());
 }
 
