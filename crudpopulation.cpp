@@ -1,36 +1,18 @@
-#include <iostream>
-using namespace std;
-int main()
-{
-    int initial_size, days, next_term, number_of_sequences, second_size, final_size;
-    char ans;
+#include "crudpopulation.h"
 
-    do
-    {
-        cout << "Enter the initial size of the crud population (in pounds): ";
-        cin >> initial_size;
-        cout << "Enter the number of days: ";
-        cin >> days;
+int main() {
+    int population, days, finalSize;
+    cout << "Press enter to start program...\n";
 
-        number_of_sequences = (days / 5) + 1;
-        second_size = initial_size;
+    do {
 
-        for (int i = 3; i <= number_of_sequences; ++i) {
-            next_term = initial_size + second_size;
-            initial_size = second_size;
-            second_size = next_term;
-        }
+        population = get_input(0);
+        days = get_input(1);
 
-        final_size = (number_of_sequences == 1 ? initial_size : second_size);
+        finalSize = calcPopulation(population, days);
 
-        cout << "The final size of the crud population after " << days << " days: " << final_size << " pound/s." << endl;
+        display(finalSize, population, days);
 
-        cout << "Do you want to input another population size? If yes, enter the character 'y' and press return.\n";
-        cin >> ans ;
-        
-    } while (ans == 'y' || ans =='Y');
-
-    cout << "Thank you and goodbye!\n";
-    return 0;
+    } while(choice());
 
 }
