@@ -1,30 +1,26 @@
 #include <iostream>
 #include <limits>
+#include <string>
 using namespace std;
 
 void clear_input();
-bool isnumeric(int number);
+bool isnumeric(string number);
 
 int get_input(int order) {
     string text[] = {"Initial population size: ", "Number of days: "};
-    int number;
-    clear_input();
+    string number;
 
     while (true) {
 
         cout << text[order];
         cin >> number;
 
-        if (cin.fail()) {
-            clear_input();
-            continue;
-        }
-        else if (number < 1) {
+        if (!isnumeric(number) || stoi(number) < 1) {
             clear_input();
             continue;
         }
         
-        return number;
+        return stoi(number);
     }
 }
 
@@ -74,6 +70,17 @@ bool choice(void) {
             continue;
         }
     }  
+}
+
+
+bool isnumeric(string number) {
+    for (char character : number) {
+        if (!isdigit(character)) {
+            return false;  
+        }
+    }
+
+    return true;
 }
 
 
