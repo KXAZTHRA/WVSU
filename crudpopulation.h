@@ -35,7 +35,7 @@ int calcPopulation(int population, int days) { // population = population
     for (int i = 0; i < days / 5; i++) {
         last_term = current_term;
         current_term = population;
-        population = current_term + population;
+        population = current_term + last_term;
     }
 
     return population;
