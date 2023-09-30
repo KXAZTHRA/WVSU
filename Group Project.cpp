@@ -36,7 +36,7 @@ int main() {
         cout << "The fare of the call that was held on " 
              << actualDay << " at " << ActualTime << ", with a call duration of " 
              << callDuration << " minutes is $" << fixed << setprecision(2) << fare << "." << endl;
-             
+
     } while(choice());
 }
 
@@ -167,13 +167,13 @@ void get_Validatedtime(int& h, int& m) {
 
         // to check if there are no more colons remaining in milTime
         // what if 16:0
-        if (milTime.find(delimiter) != string::npos) {
+        if (milTime.find(delimiter) != string::npos) { 
             cout << "Invalid value. Please enter a valid integer for minutes." << endl;
             continue;
         }
 
         // the remaining value in milTime will be the minutes
-        if (isNumeric(milTime)) {
+        if (isNumeric(milTime)) { 
             minutes = stoi(milTime);
         } else {
             cout << "Invalid value. Please enter a valid integer for minutes." << endl;
