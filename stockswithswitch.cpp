@@ -10,7 +10,7 @@ that has three int arguments consisting of the whole-dollar portion of the
 price and the two integers that make up the fraction part. function
 returns the price of one share of stock as a single number of type double.*/
 
-#include "stocksithswitch.h"
+#include "stockswithswitch.h"
 
 int main() {
     
