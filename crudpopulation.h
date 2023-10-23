@@ -25,13 +25,13 @@ int get_input(int order) {
 }
 
 
-int calcPopulation(int population, int days) { // population = population
-    int current_term = 0, last_term;
+int calcPopulation(int population, int days) { // current_term == population
+    int last_term, temp;
     
     for (int i = 0; i < days / 5; i++) {
-        last_term = current_term;
-        current_term = population;
-        population = current_term + last_term;
+        temp = last_term;
+        last_term = population;
+        population = last_term + temp;
     }
 
     return population;
