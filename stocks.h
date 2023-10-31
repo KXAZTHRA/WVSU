@@ -3,8 +3,13 @@
 #include <iomanip> // setprecision and fixed
 #include <array> // array<data_type, index>
 #include <algorithm> // count(), begin(), end()
-#include <windows.h> // Sleep()
+#include <unistd.h> // Sleep() and S
+#include <vector>
 using namespace std; 
+
+struct mix_number {
+    int number[3];
+};
 
 bool isnumber(string input);
 bool validmixnumber(string input);
@@ -14,10 +19,12 @@ void type(string word, int typingspeed);
 void display_message() {
     // Display Welcome message
 
-    string message = "WELCOME TO THE STOCKS CALCULATOR.\n\n 1.) To use this program, input 1 integer data for the whole-dollar portion of the stock;\n 2.) Then, input 2 integer data for the fraction portion of the stock;\n 3.) The program will calculate the total stocks for you.\n\n";
+    string message = "WELCOME TO THE STOCKS CALCULATOR!\n\n 1.) To use this program, input 1 integer data for the number of companies;\n 2.) Then, input another 1 integer data for the shares of every company;\n 3.) Lastly, input a mix number (e.g. 11/2) for the stocks value.\n\nThe program will start calculating the total price of the company's stocks, and create a summary table for every company.\n\n\n";
     // Default typing speed
-    const int typingspeed = 50;
+    const int typingspeed = 75;
     type(message, typingspeed);
+    sleep(5000);
+    system("CLS");
 }
 
 
@@ -26,22 +33,29 @@ void type(string word, int typingspeed) {
 
     // Iterate between every character in our message
     for (int i = 0; i < word.length(); i++) {
-        Sleep(typingspeed);
+        sleep(typingspeed);
         cout << word[i];
     }
 }
 
 
-int get_int(int order) {
-    // Get validated integer value 
+string get_name(string prompt) {
+    string input = "";
 
-    string prompts[] = {"Input number of shares: "};
+    cout << prompt;
+    cin.ignore();
+    getline(cin, input);
+
+    return input;
+}
+
+
+int get_int(string prompt) {
+    // Get validated integer value 
     string input;
 
-    cout << endl;
-
     while (true) {
-        cout << prompts[order];
+        cout << prompt;
         cin >> input;
 
         // Reject not number input, negative number input, and zero denominator
@@ -65,11 +79,10 @@ bool isnumber(string input) {
 }
 
 
-array<int, 3> get_mixnumber() {
-    string prompt = "Input mix number: ";
+double get_mixnumber(string prompt) {
     string input;
     size_t delimiter;
-    array<int, 3> mix_number;
+    mix_number mix_number;
 
     while (true) {
         cout << prompt;
@@ -83,15 +96,15 @@ array<int, 3> get_mixnumber() {
         delimiter = input.find('/');
 
         // "123/4"
-        mix_number[0] = stoi(input.substr(0, delimiter - 1));
-        mix_number[1] = stoi(input.substr(delimiter - 1, delimiter));
-        mix_number[2] = stoi(input.substr(delimiter + 1, input.length())); // substr([start, end))
+        mix_number.number[0] = stoi(input.substr(0, delimiter - 1));
+        mix_number.number[1] = stoi(input.substr(delimiter - 1, delimiter));
+        mix_number.number[2] = stoi(input.substr(delimiter + 1, input.length())); // substr([start, end))
 
-        if (mix_number[1] > mix_number[2]) {
+        if (mix_number.number[1] >= mix_number.number[2]) {
             continue;
         }
 
-        return mix_number;
+        return mix_number.number[0] + (double) mix_number.number[1] / mix_number.number[2];
     }    
 }
 
@@ -128,27 +141,21 @@ bool validmixnumber(string input) {
 }
 
 
-double calculate_stocks2(array<int, 3> mix_number) {
-    // mix_number[0] == whole, mix_number[1] == numerator, mix_number[2] == denominator
-    return mix_number[0] + ((double) mix_number[1] / mix_number[2]);
+void display_total_price(double totalPrice, string name) {
+    cout << "The total price of " << name << "'s stocks is $" << setprecision(2) << fixed << totalPrice << endl << endl;
 }
 
 
-void display_total_price(int shares, double total_stocks) {
-    cout << "The total price of the user's stock is $" << setprecision(2) << fixed << shares * total_stocks << endl;
-}
+void table(vector<string> name, vector<int> shares, vector<double> stocks, vector<double> totalPrice, int companies) {
+    double total_company_stocks = 0;
 
-
-void table(int shares[], double stocks[], char company[]) {
-    cout << "COMPANY\tSHARES\tSTOCKS\tTOTAL PRICE\n";
-
-    for (int i = 0; i < 2; i++) {
-        cout << company[i] << '\t' << shares[i] << "\t$" << stocks[i] << "\t$" << shares[i] * stocks[i] << endl;
+    cout << "COMPANY\t\t\tSHARES\t\tSTOCKS\t\tTOTAL PRICE\n";
+    for (int i = 0; i < companies; i++) {
+        cout << name[i] << "\t\t" << shares[i] << "\t\t$" << stocks[i] << "\t\t$" << totalPrice[i] << endl;
+        total_company_stocks += totalPrice[i];
     }
 
-    double total_company_stocks = (shares[0] * stocks[0]) + (shares[1] * stocks[1]);
-
-    cout << "\nThe total stocks of company A and B: $" << fixed << setprecision(2) << total_company_stocks << endl; 
+    cout << "\nThe total stocks of all the companies: $" << fixed << setprecision(2) << total_company_stocks << endl; 
 }
 
 
@@ -167,6 +174,7 @@ bool choice(void) {
         decision[0] = toupper(decision[0]);
         
         if (decision[0] == 'Y') {
+            system("CLS");
             return true;
         }
         else if (decision[0] == 'N') {
