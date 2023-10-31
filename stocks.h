@@ -7,6 +7,7 @@
 #include <vector>
 using namespace std; 
 
+// Create a data struct where in it contains an array of three integers 
 struct mix_number {
     int number[3];
 };

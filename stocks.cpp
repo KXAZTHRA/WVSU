@@ -20,7 +20,7 @@ int main() {
         // Ask for the number of companies
         int companies = get_int("Enter the number of companies: ");
 
-        // Create arrays or "vectors"
+        // Create arrays or "vectors" according to the number of companies
         vector<string> names(companies);
         vector<int> shares(companies);
         vector<double> stocks(companies);
