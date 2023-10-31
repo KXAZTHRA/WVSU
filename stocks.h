@@ -22,10 +22,10 @@ void display_message() {
 
     string message = "WELCOME TO THE STOCKS CALCULATOR!\n\n 1.) To use this program, input 1 integer data for the number of companies;\n 2.) Then, input another 1 integer data for the shares of every company;\n 3.) Lastly, input a mix number (e.g. 11/2) for the stocks value.\n\nThe program will start calculating the total price of the company's stocks, and create a summary table for every company.\n\n\n";
     // Default typing speed
-    const int typingspeed = 75;
+    int typingspeed = 0.75;
     type(message, typingspeed);
-    sleep(5000);
-    system("CLS");
+    sleep(10);
+    system("clear");
 }
 
 
