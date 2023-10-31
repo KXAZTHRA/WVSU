@@ -17,17 +17,41 @@ int main() {
     // Welcome message
     display_message();
 
-    // Stock[0] == whole, stock[1] == numerator, stock[2] == denominator
-    int shares;
-    array<int, 3> mix_number;
 
+    // shares for 2 companies
+    int shares[2];
+    // total_stocks for 2 companies
+    double total_stocks[2];
+    // mix_number for 2 companies
+    // mix_number[0] == whole, mix_number[1] == numerator, mix_number[2] == denominator
+    array<int, 3> mix_number[2]; // int mix_number[3][2]
+    /* a | b | c company A
+       a | b | c company B */
+    
+    // Names of the companies
+    char company[] = {'A', 'B'};
+
+    // To restart the program if the user wants to input new values
     do {
-        shares = get_int(0);
-        mix_number = get_mixnumber();
+        // Iterate between the 2 companies
+        for (int i = 0; i < 2; i++) {
+            // Display company name
+            cout << "COMPANY " << company[i];
+            // Get shares for 1 company
+            shares[i] = get_int(0);
+            // Get mix number of the price of the stocks
+            mix_number[i] = get_mixnumber();
+            // Convert mix number of the stocks in decimal form
+            total_stocks[i] = calculate_stocks2(mix_number[i]); 
+            // Display total price
+            display_total_price(shares[i], total_stocks[i]);
 
-        double total_stocks = calculate_stocks2(mix_number);
+            // New line for aesthetic purposes
+            cout << endl;
+        }
 
-        display_total_price(shares, total_stocks);
+        // Display table of the shares, stocks, and company name of the 2 companies
+        table(shares, total_stocks, company);
 
     } while (choice());
 }
