@@ -1,16 +1,12 @@
 #include <iostream> // cin and cout
 #include <string> // stod() and stoi()
 #include <iomanip> // setprecision and fixed
-#include <array> // array<data_type, index>
 #include <algorithm> // count(), begin(), end()
-#include <unistd.h> // Sleep() and S
-#include <vector>
+#include <windows.h> // Sleep() and system()
+#include <vector> // vector<data_type> 
 using namespace std; 
 
-// Create a data struct where in it contains an array of three integers 
-struct mix_number {
-    int number[3];
-};
+const double typingspeed = 0.25;
 
 bool isnumber(string input);
 bool validmixnumber(string input);
@@ -22,10 +18,9 @@ void display_message() {
 
     string message = "WELCOME TO THE STOCKS CALCULATOR!\n\n 1.) To use this program, input 1 integer data for the number of companies;\n 2.) Then, input another 1 integer data for the shares of every company;\n 3.) Lastly, input a mix number (e.g. 11/2) for the stocks value.\n\nThe program will start calculating the total price of the company's stocks, and create a summary table for every company.\n\n\n";
     // Default typing speed
-    int typingspeed = 0.75;
     type(message, typingspeed);
-    sleep(10);
-    system("clear");
+    Sleep(5);
+    system("CLS");
 }
 
 
@@ -34,7 +29,7 @@ void type(string word, int typingspeed) {
 
     // Iterate between every character in our message
     for (int i = 0; i < word.length(); i++) {
-        sleep(typingspeed);
+        Sleep(typingspeed);
         cout << word[i];
     }
 }
@@ -43,7 +38,7 @@ void type(string word, int typingspeed) {
 string get_name(string prompt) {
     string input = "";
 
-    cout << prompt;
+    type(prompt, typingspeed);
     cin.ignore();
     getline(cin, input);
 
@@ -56,7 +51,7 @@ int get_int(string prompt) {
     string input;
 
     while (true) {
-        cout << prompt;
+        type(prompt, typingspeed);
         cin >> input;
 
         // Reject not number input, negative number input, and zero denominator
@@ -83,10 +78,10 @@ bool isnumber(string input) {
 double get_mixnumber(string prompt) {
     string input;
     size_t delimiter;
-    mix_number mix_number;
+    int mix_number[3];
 
     while (true) {
-        cout << prompt;
+        type(prompt, typingspeed);
         cin >> input;
 
                                       // Convert denominator character to integer
@@ -97,15 +92,15 @@ double get_mixnumber(string prompt) {
         delimiter = input.find('/');
 
         // "123/4"
-        mix_number.number[0] = stoi(input.substr(0, delimiter - 1));
-        mix_number.number[1] = stoi(input.substr(delimiter - 1, delimiter));
-        mix_number.number[2] = stoi(input.substr(delimiter + 1, input.length())); // substr([start, end))
+        mix_number[0] = stoi(input.substr(0, delimiter - 1));
+        mix_number[1] = stoi(input.substr(delimiter - 1, delimiter));
+        mix_number[2] = stoi(input.substr(delimiter + 1, input.length())); // substr([start, end))
 
-        if (mix_number.number[1] >= mix_number.number[2]) {
+        if (mix_number[1] >= mix_number[2]) {
             continue;
         }
 
-        return mix_number.number[0] + (double) mix_number.number[1] / mix_number.number[2];
+        return mix_number[0] + (double) mix_number[1] / mix_number[2];
     }    
 }
 
@@ -115,7 +110,7 @@ bool validmixnumber(string input) {
 
     /*Check if input has more than '/' characters
     ex. don't accept "12/3/4", accept "123/4"*/ 
-    if (count(input.begin(), input.end(), '/') != 1) {
+    if (count(input.begin(), input.end(), '/') != 1 || input.length() < 4) {
        return false;
     }
         
@@ -167,7 +162,7 @@ bool choice(void) {
     // Loop for making sure that the user input only "yes" or "no"
     while (true) {
         // Ask user for a decision
-        cout << "\nDo you want to continue? Yes or No: ";
+        type("\nDo you want to continue? Yes or No: ", typingspeed);
         cin >> decision;
         cout << endl;
     
