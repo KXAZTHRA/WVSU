@@ -88,17 +88,22 @@ bool isdecimal(string input) {
 
 date get_date(string prompt) {
     string input;
-    date day;
+    date date;
 
     while (true) {
         type(prompt);
         getline(cin, input);
 
         if (input.length() != 8 || !valid_date(input)) {
+            cerr << "Follow the correct DATE format! (MM/DD/YY)\n";
             continue;
         }
 
-        return ;
+        date.day = stoi(input.substr(0, 2));
+        date.month = stoi(input.substr(3, 5));
+        date.year = input.substr(6, 8);
+
+        return date;
     }
 }
 
