@@ -10,7 +10,13 @@ Assume that your user is a fitness/wellness enthusiast, write a program that
 (8)provide (???) for data sets*/
 #include <iostream>
 #include <map>
+#include <windows.h>
+#include <algorithm>
 using namespace std;
+
+struct date {
+    int month, day, year;
+}
 
 // Declare data set for food name, and its corresponding value
 map<string, double> foodCalories = {{"Chicken Adobo", 215}, {"Pork Adobo", 220}, {"Balut", 188}, {"Bangus", 150}, {"Bibingka", 200}, {"Beef Steak", 200}, {"Buko Salad", 120}, {"Caldereta", 250}, {"Kamote Cue", 150}, {"Champorado", 150}, {"Chicken Inasal", 230}, {"Chicken Tinola", 150}, {"Chicharon", 544}, {"Dinuguan", 120}, {"Embutido", 260}, {"Ensaymada", 340}, {"Fish Sinigang", 150}, {"Halo-halo", 160}, {"Kare-Kare", 250}, {"Kinilaw", 120}, {"Laing", 200}, {"Lechon Baboy", 298}, {"Lechon Kawali", 250}, {"Longganisa", 310}, {"Lumpiang Shanghai", 240}, {"Manggang Hilaw", 60}, {"Menudo", 150}, {"Pan de Sal", 300}, {"Pancit Bihon", 230}, {"Pancit Canton", 300}, {"Lechon Paksiw", 240}, {"Puto", 100}, {"Sinangag", 130}, {"Pork Sinigang", 200}, {"Pork Sisig", 480}, {"Taho", 100}, {"Tapsilog", 300}, {"Tinolang Manok", 110}, {"Tocino", 300}, {"Rice", 130}, {"Hamburger", 250}, {"Hot Dog", 150}, {"Cheeseburger", 300}, {"Chicken Nuggets", 280}, {"French Fries", 365}, {"Caesar Salad", 150}, {"Buffalo Wings", 480}, {"Macaroni and Cheese", 330}, {"Grilled Chicken Breast", 165}, {"Spaghetti", 200}, {"Pizza", 285}, {"Chocolate Chip Cookie", 50}, {"Ice Cream", 150}, {"Donut", 240}, {"Pancakes", 200}, {"Bacon", 135}, {"Eggs", 140}, {"Steak", 500}, {"BBQ Ribs", 600}, {"Mashed Potatoes", 210}, {"Popcorn", 55}, {"Apple", 95}, {"Banana", 105}, {"Mango", 60}, {"Strawberry", 32}, {"Orange", 52}, {"Grapes", 69}, {"Watermelon", 30}, {"Pineapple", 50}, {"Avocado", 160}, {"Papaya", 43}, {"Kiwi", 61}, {"Pomegranate", 83}, {"Blueberries", 57}, {"Raspberry", 52}, {"Blackberry", 40}};
@@ -30,6 +36,85 @@ int main() {
     // Ask user for the type of workout with equivalent calorie burn values based on the number of repetition anf sets
 
     // Ask user for his/her desired weight, date the workout started and compute when will the user attain that desired weight
+    double desired_weight = get_double("What is your desired weight? (in kg): ");
+    date start_date = get_date("What date did you start implementing your diet and workout? (in MM/DD/YY): ");
+}
 
 
+double get_double(string prompt) {
+    string input;
+
+    while (true) {
+        type(prompt);
+        getline(cin, input);
+
+        if (!isdecimal(input) || stod(input) < 0) {
+            continue;
+        }
+
+        return stod(input);
+    }
+}
+
+
+void type(string word) {
+    // "Type" messages or prompts in the terminal
+
+    // Iterate between every character in our message
+    for (int i = 0; i < word.length(); i++) {
+        Sleep(25);
+        cout << word[i];
+    }
+}
+
+
+bool isdecimal(string input) {
+    if (count(input.begin(), input.end(), '.') > 1) {
+        return false;
+    }
+
+    for (char character : input) {
+        if (character == '.') {
+            continue;
+        }
+        else if (!isdigit(character)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+
+date get_date(string prompt) {
+    string input;
+    date day;
+
+    while (true) {
+        type(prompt);
+        getline(cin, input);
+
+        if (input.length() != 8 || !valid_date(input)) {
+            continue;
+        }
+
+        return ;
+    }
+}
+
+bool valid_date(string input) {
+    if (count(input.begin(), input.end(), '/') != 2) {
+        return false;
+    }
+
+    for (char character : input) {
+        if (character == '/') {
+            continue;
+        }
+        else if (!isdigit(character)) {
+            return false;
+        }
+    }
+
+    return true;
 }
