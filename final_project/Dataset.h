@@ -20,5 +20,11 @@ map<string, double> foodCalories = {
     {"Bacon", 135}, {"Eggs", 140}, {"Steak", 500}, {"BBQ Ribs", 600}, {"Mashed Potatoes", 210}, {"Popcorn", 55},
     {"Apple", 95}, {"Banana", 105}, {"Mango", 60}, {"Strawberry", 32}, {"Orange", 52}, {"Grapes", 69},
     {"Watermelon", 30}, {"Pineapple", 50}, {"Avocado", 160}, {"Papaya", 43}, {"Kiwi", 61}, {"Pomegranate", 83},
-    {"Blueberries", 57}, {"Raspberry", 52}, {"Blackberry", 40}
-};
+    {"Blueberries", 57}, {"Raspberry", 52}, {"Blackberry", 40}};
+
+map<string, double> exerciseCalories = {
+    {"Running", 7.7}, {"Swimming", 12.1}, {"Cycling", 8}, {"Push-ups", 0.5}, {"Modified Push-ups", 0.3}, {"Dips", 1.2},
+    {"Squats", 2.2}, {"Lunges", 1.3}, {"Walking lunges", 0.9}, {"Plank", 5}, {"Side plank", 2.6}, {"Sit-ups", 0.2}, 
+    {"Crunches", 0.1}, {"Jumping jacks", 10.0}, {"Jumping rope", 12.3}, {"Burpees", 1.3}, {"Box jumps", 2.2},
+    {"Mountain climbing", 14.2}, {"Yoga", 5.5}, {"Pilates", 3.7}, {"Dancing", 5.5}, {"Walking", 4.7}, {"Using stairs", 11},
+    {"Elliptical trainer", 6}};
