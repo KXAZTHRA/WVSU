@@ -6,25 +6,25 @@
 using namespace std;
 
 map<string, double> foodCalories = {
-    {"Chicken Adobo", 215}, {"Pork Adobo", 220}, {"Balut", 188}, {"Bangus", 150}, {"Bibingka", 200},
-    {"Beef Steak", 200}, {"Buko Salad", 120}, {"Caldereta", 250}, {"Kamote Cue", 150}, {"Champorado", 150},
-    {"Chicken Inasal", 230}, {"Chicken Tinola", 150}, {"Chicharon", 544}, {"Dinuguan", 120}, {"Embutido", 260},
-    {"Ensaymada", 340}, {"Fish Sinigang", 150}, {"Halo-halo", 160}, {"Kare-Kare", 250}, {"Kinilaw", 120},
-    {"Laing", 200}, {"Lechon Baboy", 298}, {"Lechon Kawali", 250}, {"Longganisa", 310}, {"Lumpiang Shanghai", 240},
-    {"Manggang Hilaw", 60}, {"Menudo", 150}, {"Pan de Sal", 300}, {"Pancit Bihon", 230}, {"Pancit Canton", 300},
-    {"Lechon Paksiw", 240}, {"Puto", 100}, {"Sinangag", 130}, {"Pork Sinigang", 200}, {"Pork Sisig", 480},
-    {"Taho", 100}, {"Tapsilog", 300}, {"Tinolang Manok", 110}, {"Tocino", 300}, {"Rice", 130}, {"Hamburger", 250},
-    {"Hot Dog", 150}, {"Cheeseburger", 300}, {"Chicken Nuggets", 280}, {"French Fries", 365}, {"Caesar Salad", 150},
-    {"Buffalo Wings", 480}, {"Macaroni and Cheese", 330}, {"Grilled Chicken Breast", 165}, {"Spaghetti", 200},
-    {"Pizza", 285}, {"Chocolate Chip Cookie", 50}, {"Ice Cream", 150}, {"Donut", 240}, {"Pancakes", 200},
-    {"Bacon", 135}, {"Eggs", 140}, {"Steak", 500}, {"BBQ Ribs", 600}, {"Mashed Potatoes", 210}, {"Popcorn", 55},
-    {"Apple", 95}, {"Banana", 105}, {"Mango", 60}, {"Strawberry", 32}, {"Orange", 52}, {"Grapes", 69},
-    {"Watermelon", 30}, {"Pineapple", 50}, {"Avocado", 160}, {"Papaya", 43}, {"Kiwi", 61}, {"Pomegranate", 83},
-    {"Blueberries", 57}, {"Raspberry", 52}, {"Blackberry", 40}};
+    {"CHICKEN ADOBO", 215}, {"PORK ADOBO", 220}, {"BALUT", 188}, {"BANGUS", 150}, {"BIBINGKA", 200},
+    {"BEEF STEAK", 200}, {"BUKO SALAD", 120}, {"CALDERETA", 250}, {"KAMOTE CUE", 150}, {"CHAMPORADO", 150},
+    {"CHICKEN INASAL", 230}, {"CHICKEN TINOLA", 150}, {"CHICHARON", 544}, {"DINUGUAN", 120}, {"EMBUTIDO", 260},
+    {"ENSAYMADA", 340}, {"FISH SINIGANG", 150}, {"HALO-HALO", 160}, {"KARE-KARE", 250}, {"KINILAW", 120},
+    {"LAING", 200}, {"LECHON BABOY", 298}, {"LECHON KAWALI", 250}, {"LONGGANISA", 310}, {"LUMPIANG SHANGHAI", 240},
+    {"MANGGANG HILAW", 60}, {"MENUDO", 150}, {"PAN DE SAL", 300}, {"PANCIT BIHON", 230}, {"PANCIT CANTON", 300},
+    {"LECHON PAKSIW", 240}, {"PUTO", 100}, {"SINANGAG", 130}, {"PORK SINIGANG", 200}, {"PORK SISIG", 480},
+    {"TAHO", 100}, {"TAPSILOG", 300}, {"TINOLANG MANOK", 110}, {"TOCINO", 300}, {"RICE", 130}, {"HAMBURGER", 250},
+    {"HOT DOG", 150}, {"CHEESEBURGER", 300}, {"CHICKEN NUGGETS", 280}, {"FRENCH FRIES", 365}, {"CAESAR SALAD", 150},
+    {"BUFFALO WINGS", 480}, {"MACARONI AND CHEESE", 330}, {"GRILLED CHICKEN BREAST", 165}, {"SPAGHETTI", 200},
+    {"PIZZA", 285}, {"CHOCOLATE CHIP COOKIE", 50}, {"ICE CREAM", 150}, {"DONUT", 240}, {"PANCAKES", 200},
+    {"BACON", 135}, {"EGGS", 140}, {"STEAK", 500}, {"BBQ RIBS", 600}, {"MASHED POTATOES", 210}, {"POPCORN", 55},
+    {"APPLE", 95}, {"BANANA", 105}, {"MANGO", 60}, {"STRAWBERRY", 32}, {"ORANGE", 52}, {"GRAPES", 69},
+    {"WATERMELON", 30}, {"PINEAPPLE", 50}, {"AVOCADO", 160}, {"PAPAYA", 43}, {"KIWI", 61}, {"POMEGRANATE", 83},
+    {"BLUEBERRIES", 57}, {"RASPBERRY", 52}, {"BLACKBERRY", 40}};
 
 map<string, double> exerciseCalories = {
-    {"Running", 7.7}, {"Swimming", 12.1}, {"Cycling", 8}, {"Push-ups", 0.5}, {"Modified Push-ups", 0.3}, {"Dips", 1.2},
-    {"Squats", 2.2}, {"Lunges", 1.3}, {"Walking lunges", 0.9}, {"Plank", 5}, {"Side plank", 2.6}, {"Sit-ups", 0.2}, 
-    {"Crunches", 0.1}, {"Jumping jacks", 10.0}, {"Jumping rope", 12.3}, {"Burpees", 1.3}, {"Box jumps", 2.2},
-    {"Mountain climbing", 14.2}, {"Yoga", 5.5}, {"Pilates", 3.7}, {"Dancing", 5.5}, {"Walking", 4.7}, {"Using stairs", 11},
-    {"Elliptical trainer", 6}};
+    {"RUNNING", 7.7}, {"SWIMMING", 12.1}, {"CYCLING", 8}, {"PUSH-UPS", 0.5}, {"MODIFIED PUSH-UPS", 0.3}, {"DIPS", 1.2},
+    {"SQUATS", 2.2}, {"LUNGES", 1.3}, {"WALKING LUNGES", 0.9}, {"PLANK", 5}, {"SIDE PLANK", 2.6}, {"SIT-UPS", 0.2}, 
+    {"CRUNCHES", 0.1}, {"JUMPING JACKS", 10.0}, {"JUMPING ROPE", 12.3}, {"BURPEES", 1.3}, {"BOX JUMPS", 2.2},
+    {"MOUNTAIN CLIMBING", 14.2}, {"YOGA", 5.5}, {"PILATES", 3.7}, {"DANCING", 5.5}, {"WALKING", 4.7}, {"USING STAIRS", 11},
+    {"ELLIPTICAL TRAINER", 6}};
