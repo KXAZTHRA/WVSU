@@ -2,7 +2,8 @@
 #include <map>
 #include <string>
 #include <limits>
-
+#include <iomanip>
+#include <vector>
 using namespace std;
 
 map<string, double> foodCalories = {

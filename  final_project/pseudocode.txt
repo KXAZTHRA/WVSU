@@ -1,0 +1,4 @@
+// Program to calculate user's BMI, food intake's total calorie, workouts' total calorie burn, and when to achieve the desired weight base on user's inputs.
+// Display a prompt on how to use the Program
+Display "..."
+// Declare a variable for BMI, weight, and height
