@@ -26,6 +26,7 @@ map<string, double> exerciseCalories = {{"Running", 240}, {"Cycling", 240}, {"Sw
 
 int main() {
     // Display message about how to use the program
+    display_message();
 
     // Ask and Calculate BMI
 
@@ -40,6 +41,30 @@ int main() {
     date start_date = get_date("What date did you start implementing your diet and workout? (in MM/DD/YY): ");
 }
 
+void display_message(){
+    string message =
+        "WELCOME TO THE HEALTH AND FITNESS CALCULATOR!
+
+        This program will help you achieve your health goals by
+        providing tools to track your BMI, monitor your food intake,
+        record your workouts, and estimate your weight loss timeline.
+
+        To get started, follow these simple steps:
+        1. Enter your current weight and height.
+        2. Log your daily food intake.
+        3. Record your workout sessions.
+        4. Set your desired weight goal.
+
+        The program will then:
+        - Calculate your BMI and interpret your weight status.
+        - Track your total calorie intake and burn each day.
+        - Estimate your weight loss timeline based on your goals.
+
+        Ready for a healthier you? Let's get started.";
+
+    type(message);
+
+}
 
 double get_double(string prompt) {
     string input;

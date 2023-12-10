@@ -2,8 +2,7 @@
 #include <map>
 #include <string>
 #include <limits>
-#include <iomanip>
-#include <vector>
+
 using namespace std;
 
 map<string, double> foodCalories = {
@@ -23,19 +22,9 @@ map<string, double> foodCalories = {
     {"WATERMELON", 30}, {"PINEAPPLE", 50}, {"AVOCADO", 160}, {"PAPAYA", 43}, {"KIWI", 61}, {"POMEGRANATE", 83},
     {"BLUEBERRIES", 57}, {"RASPBERRY", 52}, {"BLACKBERRY", 40}};
 
-map<string, double> exercisePerMinute = {
-    {"RUNNING", 7.7}, {"WALKING", 4.7}, {"SPRINTING", 15.5},
-    {"CYCLING", 8.0}, {"STATIONARY BIKE", 6.0}, {"SPINNING", 10.0},
-    {"YOGA", 5.5}, {"PILATES", 3.7}, {"DANCING", 5.5}, {"HIP HOP", 7.0},
-    {"BALLET", 5.0}, {"ELLIPTICAL TRAINER", 6.0}, {"ROWING MACHINE", 7.0},
-    {"STEP MACHINE", 8.0}, {"WEIGHT TRAINING", 3.5}, {"HIGH KNEES", 10.5},
-    {"MOUNTAIN CLIMBING", 14.2}, {"STAIRS", 11.0}, {"ELBOW PLANK", 5.0},
-    {"SIDE PLANK", 2.6}, {"FULL PLANK", 3.5}};
-
-map<string, double> exercisePerRep = {
-    {"SWIMMING", 12.1}, {"PUSH-UPS", 0.5}, {"MODIFIED PUSH-UPS", 0.3}, {"DIPS", 1.2},
-    {"TRICEPS DIPS", 0.8}, {"PARALLEL BAR DIPS", 1.5}, {"SQUATS", 2.2}, {"JUMP SQUATS", 4.0},
-    {"WALL SQUATS", 1.0}, {"LUNGES", 1.3}, {"WALKING LUNGES", 0.9}, {"REVERSE LUNGES", 1.1},
-    {"SIT-UPS", 0.2}, {"CRUNCHES", 0.1}, {"LEG RAISES", 0.4}, {"JUMPING JACKS", 10.0},
-    {"DOUBLE UNDERS", 15.0}, {"JUMPING ROPE", 12.3}, {"SINGLE LEG JUMPS", 0.8}, {"BOX JUMPS", 2.2},
-    {"BURPEES", 1.3}};
+map<string, double> exerciseCalories = {
+    {"RUNNING", 7.7}, {"SWIMMING", 12.1}, {"CYCLING", 8}, {"PUSH-UPS", 0.5}, {"MODIFIED PUSH-UPS", 0.3}, {"DIPS", 1.2},
+    {"SQUATS", 2.2}, {"LUNGES", 1.3}, {"WALKING LUNGES", 0.9}, {"PLANK", 5}, {"SIDE PLANK", 2.6}, {"SIT-UPS", 0.2}, 
+    {"CRUNCHES", 0.1}, {"JUMPING JACKS", 10.0}, {"JUMPING ROPE", 12.3}, {"BURPEES", 1.3}, {"BOX JUMPS", 2.2},
+    {"MOUNTAIN CLIMBING", 14.2}, {"YOGA", 5.5}, {"PILATES", 3.7}, {"DANCING", 5.5}, {"WALKING", 4.7}, {"USING STAIRS", 11},
+    {"ELLIPTICAL TRAINER", 6}};
