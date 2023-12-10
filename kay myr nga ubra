@@ -152,8 +152,4 @@ void calculate_calories_burnt() {
     cout << "\nThe total number of calories you burnt through workouts: " << total_calories_burnt << " cal.\n";
 }
 
-int main() {
-    display_valid_workouts();
-    calculate_calories_burnt();
-    return 0;
-}
+
