@@ -1,4 +1,21 @@
-// Program to calculate user's BMI, food intake's total calorie, workouts' total calorie burn, and when to achieve the desired weight base on user's inputs.
-// Display a prompt on how to use the Program
+This Program to calculate user's BMI, food intake's total calorie, workouts' total calorie burn, and when to achieve the desired weight base on user's inputs.
 Display "..."
-// Declare a variable for BMI, weight, and height
+
+Declare main() function
+    
+    Declare weight, height, BMI
+
+    Display "
+    Read weight
+    For character in weight
+        If not isdouble(weight)
+            Go back to line 6
+
+    Read height
+    For character in height
+        If not isdouble(height)
+            Go back to line 11
+
+    Calculate BMI = weight / pow(height, 2)
+    Display "
+
