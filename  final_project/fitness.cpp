@@ -38,6 +38,8 @@ void calculate_diet_timeline(double weight, double calories_consumed, double cal
 date calculate_end_date(int days, date start_date);
 void interpret(date end_date, int days);
 
+bool choice(void);
+
 
 int main() {
     // Display message about how to use the program
@@ -47,15 +49,22 @@ int main() {
     double weight = get_BMI();
 
     // Ask user for foods eaten a day and compute the overall calorie intake
-    double total_calories = calories();
+    do {
+        double total_calories = calories();
+        Sleep(5000);
 
-    // Ask user for non-workout activities that may burn calories
+        // Ask user for non-workout activities that may burn calories
 
-    // Ask user for the type of workout with equivalent calorie burn values based on the number of repetition and sets
-    double work_out_burn = workout();
+        // Ask user for the type of workout with equivalent calorie burn values based on the number of repetition and sets
+        double work_out_burn = workout();
+        Sleep(5000);
 
-    // Ask user for his/her desired weight, date the workout started and compute when will the user attain that desired weight
-    calculate_diet_timeline(weight, total_calories, work_out_burn);
+        // Ask user for his/her desired weight, date the workout started and compute when will the user attain that desired weight
+        calculate_diet_timeline(weight, total_calories, work_out_burn);
+
+    } while (choice());
+
+    type("\nEND OF THE PROGRAM!!!");
 }
 
 void display_message(){
@@ -364,9 +373,6 @@ double calculate_calories_burnt() {
         }
 
         if (exercisePerMinute.find(workout) != exercisePerMinute.end()) {
-            double time;
-
-            time = get_time();
 
             calories = calculate_time_cal(workout, get_time(), exercisePerMinute);
             cout << "Calories burnt for " << workout << ": " << calories << " cal.\n";
@@ -570,7 +576,32 @@ void interpret(date end_date, int days) {
 
     type("\n\nIF YOU FOLLOW YOUR DIET AND WORKOUT PLAN CONSISTENTLY, YOU WILL ACHIEVE YOUR DESIRED WEIGHT in ");
     cout << days << " days, on " << months[end_date.month] << " " << end_date.day << ", 20" << end_date.year << ".\n\n";
-
-    type("END OF THE PROGRAM!!!");
     
+}
+
+bool choice(void) {
+    // Declare an array
+    string decision;
+
+    // Loop for making sure that the user input only "yes" or "no"
+    while (true) {
+        // Ask user for a decision
+        type("\nDo you want to revise your workout plan? Yes or No: ");
+        cin >> decision;
+        cout << endl;
+    
+        // Convert the text to uppercase, making the input case-insensitive
+        decision[0] = toupper(decision[0]);
+        
+        if (decision[0] == 'Y') {
+            system("CLS");
+            return true;
+        }
+        else if (decision[0] == 'N') {
+            return false;
+        }
+        else {
+            continue;
+        }
+    }  
 }
