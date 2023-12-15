@@ -1,21 +1,220 @@
 This Program to calculate user's BMI, food intake's total calorie, workouts' total calorie burn, and when to achieve the desired weight base on user's inputs.
 Display "..."
 
+Declare dictionary of food
+Declare dictionary of workouts per sets/reps
+Declare dictionaryof workouts per mins
+
 Declare main() function
     
+    // Display how-to-use-this-program message
+    Display display_message
+
+    // Calculate User BMI
     Declare weight, height, BMI
 
-    Display "
+    Display "Enter weight (in kilograms): "
     Read weight
     For character in weight
-        If not isdouble(weight)
-            Go back to line 6
+    If not isdouble(weight)
+        Go to line 8
 
+    Display "Enter height (in meters): "
     Read height
-    For character in height
-        If not isdouble(height)
-            Go back to line 11
+    If not isdouble(height)
+        Go to line 11
 
     Calculate BMI = weight / pow(height, 2)
-    Display "
+    Display "\nYour BMI is " + BMI
+
+    // Check BMI normality range
+    If BMI < 18.5
+        Display "Your BMI Classification is Underweight.\n"
+    else if BMI >= 18.5 && BMI <= 24.9
+        Display "Your BMI Classification is in Normal Range.\n"
+    else if BMI >= 25 && BMI <= 29.9
+        Display "Your BMI Classification is Overweight.\n"
+    else 
+        Display "Your BMI Classification is Obese.\n"
+
+    // Get total User food calorie intake
+    // Display List of available food
+    Display dictionary of food
+    
+    Declare food, total_calories_consumed = 0 
+    Display "Enter food for breakfast (To proceed to lunch, input 'next'): "
+    Read food
+
+    Transform food into uppercase
+    if food == "NEXT"
+        go to line 60
+
+    If food is at(dictionary of food)
+        total_calories_consumed += food.calories
+        Display "Added" + food + " to calorie count.\n"
+    else 
+        Display "Food not found in dataset.\n"
+
+    go to line 45
+    
+    Display "Enter food for lunch (To proceed to dinner, input 'next'): "
+    Read food
+
+    Transform food into uppercase
+    if food == "NEXT"
+        go to line 75
+
+    If food is at(dictionary of food)
+        total_calories_consumed += food.calories
+        Display "Added" + food + " to calorie count.\n"
+    else 
+        Display "Food not found in dataset.\n"
+
+    go to line 60
+
+    Display "Enter food for dinner (To proceed to dinner, input 'next'): "
+    Read food
+
+    Transform food into uppercase
+    if food == "NEXT"
+        go to line 90
+
+    If food is at(dictionary of food)
+        total_calories_consumed += food.calories
+        Display "Added" + food + " to calorie count.\n"
+    else 
+        Display "Food not found in dataset.\n"
+
+    go to line 75
+
+    Display "Enter food for snacks (To proceed, input 'exit'): "
+    Read food
+
+    Transform food into uppercase
+    if food == "EXIT"
+        go to line 105
+
+    If food is at(dictionary of food)
+        total_calories_consumed += food.calories
+        Display "Added" + food + " to calorie count.\n"
+    else 
+        Display "Food not found in dataset.\n"
+
+    go to line 90
+
+    Display "Total calories for the day: " + total_calories_consumed
+
+    // Get User total calorie burned
+    // Display list of available workouts
+    Display dictionary of workouts per mins
+    Display dictionary of workouts per sets/reps
+
+    Declare workout, total_calories_burned = 0, mins, sets, reps, calories
+
+    Display "Enter your workout (or type 'none' to quit): "
+    Read workout 
+    Transform workout into uppercase
+
+    if workout is at(dictionary of workouts per mins) 
+        Display "Enter workout duration (in minutes): "
+        read mins
+
+        if not isnumber(mins) 
+            Display "Invalid input, please try again.\n\n"
+            go to line 118
+        
+        calories = workout.calorie_burned * mins
+        Display "Calories burnt for " + workout + ": " + calories + " cal.\n"
+        total_calories_burned += calories;
+        Display "Total calories burnt tracker: " + total_calories_burned + " cal.\n\n"
+        go to 114
+    else if workout is at(dictionary of workouts per sets/reps)
+        Display "Enter number of sets: "
+        read sets
+
+        if not isnumber(sets) 
+            Display "Invalid input, please try again.\n\n"
+            go to line 128
+
+        Display "Enter number of reps: "
+        read reps
+
+        if not isnumber(reps) 
+            Display "Invalid input, please try again.\n\n"
+            go to line 135
+        
+        calories = sets * reps * workout.calorie_burned
+
+        Display "Calories burnt for " + workout + ": " + calories + " cal.\n"
+        total_calories_burned += calories
+        Display "Total calories burnt tracker: " + total_calories_burned + " cal.\n\n"
+        go to 144
+    else if workout == "NONE"
+        go to line 150
+    else 
+        "Invalid workout, please try again.\n\n"
+        go to line 114
+
+    Display "\nThe total number of calories you burnt through workouts: " + total_calories_burned
+
+    // Calculate desired fitness timeline
+    Declare desired_weight, weight_gained, calories_difference, days = 0
+
+    Display "What is your desired weight? (in kg): "
+    Read desired_weight
+
+    if desired_weight == weight 
+        Display "Desired weight is the same as your actual weight. Please enter another input!\n"
+        go to line 163
+    
+    // Compute number of days to achieve desired weight
+    if desired_weight > weight 
+        if total_calories_consumed > total_calories_burned
+            calories_difference = total_calories_consumed - total_calories_burned
+            weight_gained = calories_difference * 0.00013
+
+            while (weight + weight_gained < desired_weight) 
+                weight += weight_gained
+                days++
+        else 
+            Display "You will not be able to achieve your desired weight base on your diet and workout plan! Please revise it ASAP.\n"
+            exit
+    else if desired_weight < weight 
+        if total_calories_consumed < total_calories_burned
+            calorie_difference = calories_burned - calories_consumed
+            weight_gained = calorie_difference * 0.00013
+
+            while (weight - weight_gained > desired_weight) 
+                weight -= weight_gained;
+                days++;
+
+    Declare start_date, end_date
+
+    Display "What date did you start implementing your diet and workout? (in MM/DD/YY): "
+    read start_date
+
+    if not valid(start_date) 
+        Display "Follow the correct DATE format! (MM/DD/YY)\n"
+        go to line 193
+
+    end_date = calculate_end_date(days, start_date)
+
+    Display "\n\nIF YOU FOLLOW YOUR DIET AND WORKOUT PLAN CONSISTENTLY, YOU WILL ACHIEVE YOUR DESIRED WEIGHT in " + days + " days, " on " + end_date
+
+    Declare decision
+    Display "\nDo you want to revise your workout plan? Yes or No: "
+    Read decision
+
+    Transform decision[0] into uppercase 
+
+    if decision[0] == 'Y'
+        go to line 42
+    else 
+        Display "\nEND OF THE PROGRAM!!!"
+        exit
+
+
+         
+
+
 
